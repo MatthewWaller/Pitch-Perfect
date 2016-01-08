@@ -28,11 +28,6 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-
     @IBAction func playSlowSound(sender: UIButton) {
         
         playSoundWithRate(0.5)
@@ -62,9 +57,7 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
     
     func playAudioWithVariablePitch(pitch: Float) {
         
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+       stopAllSound()
         
         let audioPlayerNode = AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
@@ -89,9 +82,7 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
         
         //Made with help from http://stackoverflow.com/questions/29619087/what-does-detachnode-do-in-avaudioengine-class-in-swift
         
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopAllSound()
         
         let echoNode = AVAudioUnitDelay()
         echoNode.delayTime = NSTimeInterval(0.3)
@@ -117,10 +108,7 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
     
     func playSoundWithRate(rate: Float) {
         
-        audioPlayer.stop()
-        //Task 2
-        audioEngine.stop()
-        audioEngine.reset()
+        stopAllSound()
         
         audioPlayer.rate = rate
         
@@ -133,10 +121,15 @@ class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
     
     @IBAction func stopSound(sender: UIButton) {
         
+        stopAllSound()
+        
+    }
+    
+    func stopAllSound() {
+        
         audioPlayer.stop()
         audioEngine.stop()
         audioEngine.reset()
-        
     }
     
 

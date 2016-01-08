@@ -20,10 +20,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBOutlet weak var recordButton: UIButton!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillAppear(animated: Bool) {
         
         stopButton.hidden = true
@@ -31,10 +27,6 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         recordingInProgress.hidden = false
         recordingInProgress.text = "Tap to Record"
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-           }
 
     @IBAction func recordAudio(sender: UIButton) {
         
@@ -81,7 +73,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         //Task 1
         recordedAudio = RecordedAudio(filePathURL: recorder.url, title: recorder.url.lastPathComponent!)
 
-        self.performSegueWithIdentifier("stopRecording", sender: recordedAudio)
+        performSegueWithIdentifier("stopRecording", sender: recordedAudio)
         } else {
             print("Recording was not successful")
             recordingInProgress.text = "Tap to Record"
